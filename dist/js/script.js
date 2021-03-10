@@ -9,7 +9,12 @@ fetch('http://api.openweathermap.org/data/2.5/weather?q=Vancouver&appid=1bfe4401
                 console.log(data);//reference
 
                 $(document).ready(()=>{
-                    setTimeout(()=> $('#mainCity').append(`<span>${data.main.temp}</span>`), 500) 
+
+                    setInterval(()=> {
+                        $('#mainCity').empty()
+                        $('#mainCity').append(`<h3>${data.name}</h3><div><h4>${data.weather[0].main}</h4><h6>${data.weather[0].description}</h6></div><div><h5>Temperature: ${data.main.temp}</h5><h5>Humidity: ${data.main.humidity}</h5><h5>Pressure: ${data.main.pressure}</h5></div>`)
+
+                    }, 2000) 
                 })
             })
     })

@@ -1,0 +1,47 @@
+*{
+    box-sizing: border-box;;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+header{
+    padding: 20px 2vw;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    a{
+        text-decoration: none;
+    }
+    #logo{
+        color: black;
+        font-size: 50px;
+    }
+    nav{
+        a{
+            margin: 0 20px;
+        }
+    }
+}
+
+
+
+.cityWeather{
+    border: black 2px solid;
+    border-radius: 12px;
+    width: 300px;
+    height: 300px;
+    padding: 10px;
+    margin: 15vh auto;
+
+    display: grid;
+    grid-template-rows: 2fr 2fr 3fr;
+    align-items: center;
+}
+
+footer{
+    text-align: center;
+}

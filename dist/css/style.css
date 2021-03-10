@@ -1,1 +1,57 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  padding: 20px 2vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header a {
+  text-decoration: none;
+}
+
+header #logo {
+  color: black;
+  font-size: 50px;
+}
+
+header nav a {
+  margin: 0 20px;
+}
+
+.cityWeather {
+  border: black 2px solid;
+  border-radius: 12px;
+  width: 300px;
+  height: 300px;
+  padding: 10px;
+  margin: 15vh auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 2fr 2fr 3fr;
+      grid-template-rows: 2fr 2fr 3fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+footer {
+  text-align: center;
+}
+/*# sourceMappingURL=style.css.map */
