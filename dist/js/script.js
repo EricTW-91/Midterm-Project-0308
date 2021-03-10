@@ -1,4 +1,4 @@
-fetch('http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={1bfe440130f8c34a9a26a845a5c49429}')
+fetch('http://api.openweathermap.org/data/2.5/weather?q=Vancouver&appid=1bfe440130f8c34a9a26a845a5c49429')
     .then(res => {
         if(!res){
             console.log('Somthing Wrong!');
@@ -6,6 +6,10 @@ fetch('http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={1bfe4401
 
         res.json()
             .then(data => {
-                console.log(data[0]);
+                console.log(data);//reference
+
+                $(document).ready(()=>{
+                    setTimeout(()=> $('#mainCity').append(`<span>${data.main.temp}</span>`), 500) 
+                })
             })
     })
