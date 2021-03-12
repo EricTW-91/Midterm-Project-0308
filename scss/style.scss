@@ -23,6 +23,7 @@ header{
     nav{
         a{
             margin: 0 20px;
+            color: black;
         }
     }
 }
@@ -50,6 +51,33 @@ header{
     grid-template-rows: 2fr 2fr 3fr;
     align-items: center;
 }
+
+.cityTitle{
+    text-align: center;
+    padding: 5vh 0;
+}
+
+.forcastWeatherGroup{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1em;
+    justify-items: center;
+    align-items: center;
+    margin: 10vh auto;
+    .forcastWeather{
+        border: black 2px solid;
+        border-radius: 12px;
+        width: 300px;
+        height: 300px;
+        padding: 10px;
+        // margin: 5vh 5vw;
+
+        display: grid;
+        grid-template-rows: 2fr 2fr 3fr;
+        align-items: center;
+    }
+}
+
 
 footer{
     text-align: center;
