@@ -35,6 +35,23 @@ header nav a {
   margin: 0 20px;
 }
 
+.searchBar {
+  padding: 0 3vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.searchBar input {
+  margin: 0 20px;
+}
+
 .cityWeather {
   border: black 2px solid;
   border-radius: 12px;
@@ -53,5 +70,6 @@ header nav a {
 
 footer {
   text-align: center;
+  bottom: 0;
 }
 /*# sourceMappingURL=style.css.map */

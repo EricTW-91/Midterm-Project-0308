@@ -7,24 +7,31 @@
     <title>Weather APP</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <body>
     <header>
-        <a href="./index.html">Weather APP</a>
+        <a id="logo" href="./index.html">Weather APP</a>
         <nav>
             <a href="./current.html">Current Weather</a>
             <a href="./forcast.html">Weather Forcast</a>
         </nav>
     </header>
-
-    <h1>City's weather</h1>
     
-    <div class="content">
+    <div class="searchBar">
+        <input type="text" name="city" id="city" placeholder="Vancouver">
+        <input type="submit" value="Search" onclick="searchCity()">
+
+    </div>
+
+    <div class="cityWeather" id="mainCity">
+
     </div>
 
 
     <footer>
-
+        &copy;Eric Tseng 2021
     </footer>
 </body>
 </html>
