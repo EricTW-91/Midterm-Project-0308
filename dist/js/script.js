@@ -15,7 +15,7 @@ fetchWeatherData(cityName);
 
 function searchCity(){
     cityName = document.getElementById('city').value;
-    cityName = cityName.charAt(0).toUpperCase()+cityName.slice(1);
+    cityName = cityName.charAt(0).toUpperCase()+cityName.slice(1);//uppercase the first letter of city's name
     getCoordinates(cityName);
     fetchForcast(coord, cityName);
 }
@@ -109,12 +109,4 @@ setInterval(()=>{
 //Fetch defult data once in forcast page
 if(location.href == 'http://127.0.0.1:5500/dist/forcast.html'){
     fetchForcast(coord, cityName);
-}
-
-
-let a = 3;
-if(a == 0 || a == 2){
-    console.log('yes');
-}else{
-    console.log('no');
 }
