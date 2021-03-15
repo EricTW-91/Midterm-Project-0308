@@ -22,8 +22,6 @@ function searchCity(){
     cityName = cityName.charAt(0).toUpperCase()+cityName.slice(1);//uppercase the first letter of city's name
     getCoordinates(cityName);
     fetchWeatherData(cityName);
-    // fetchForcast(coord, cityName);
-
 }
 
 // Get coordinates info
@@ -33,12 +31,10 @@ function getCoordinates(cityName){
         if(!res){
             console.log('Somthing Wrong!');
         }
-
         res.json()
             .then(data => {
                 coord.lon = data.coord.lon;
                 coord.lat = data.coord.lat;
-
                 fetchForcast(coord, cityName);
             })
     })
@@ -51,12 +47,8 @@ function fetchWeatherData(cityName){
         if(!res){
             console.log('Somthing Wrong!');
         }
-
         res.json()
             .then(data => {
-                console.log(data);//reference
-                
-
                 $(document).ready(()=>{
                     if(data.cod == 200){//Showing message if the city's name is wrong
                         $('#mainCity').empty()
@@ -69,20 +61,17 @@ function fetchWeatherData(cityName){
                                 <li>Temperature min: ${data.main.temp_min} \u00B0C</li>
                                 <li>Temperature max: ${data.main.temp_max} \u00B0C</li>
                                 <li>Pressure: ${data.main.pressure} hPa</li>
-
                             </ul>
                             <div>
                                 <h4>${data.weather[0].main}</h4>
                                 <h6>${data.weather[0].description}</h6>
                             </div>
-                            
                         `)
                         $('li').animate({width:'100%', opacity:"1"}, 2000);
                     }else{
                         $('#mainCity').empty()
                         $('#mainCity').append(`<h3>${data.message}</h3>`)
                     }
-                        
                 })
             })
     })
@@ -95,7 +84,6 @@ function fetchForcast(coordinates, cityName){
         if(!res){
             console.log('Somthing Wrong!');
         }
-
         res.json()
             .then(data => {
                 console.log(data);//reference
@@ -137,16 +125,10 @@ function fetchForcast(coordinates, cityName){
     })
 }
 
-
-
-
 // Update "current" weather data every 2 mins
 setInterval(()=>{
-    // https://eric-tseng.ciccc.tech/Projects/Weather/forcast.html
-    if(location.href != 'http://127.0.0.1:5500/dist/forcast.html'){
-        fetchWeatherData(cityName);
-        console.log("Weather update");
-    }//only update data at interval in current and main pages
+    fetchWeatherData(cityName);
+    console.log("Weather update");
 }, 120000) 
 
 
