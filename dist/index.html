@@ -4,28 +4,62 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather APP</title>
+    <title>Weather Info</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/script.js"></script>
+    <!-- Jquery link should put before script.js file link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./js/script.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fascinate&family=Quicksand:wght@300;700&display=swap" rel="stylesheet">
 
 </head>
 <body>
     <header>
-        <a id="logo" href="./index.html">Weather APP</a>
-        <nav>
-            <a href="./current.html">City Weather</a>
-            <a href="./forcast.html">Weather Forcast</a>
-        </nav>
-    </header>
-    
-    <div class="cityWeather" id="mainCity">
+        <a id="logo" href="./index.html">Weather</a>
+        
+        <div>
+            <!-- <div class="searchBar">
+                <input type="text" name="city" id="cityInput" placeholder="Vancouver">
+                <input type="image" src="" alt="submit" onclick="searchCity()">
+                <button><img src="data:image/jpeg;base64,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" alt="search"></button>
+            </div> -->
 
-    </div>
+            <nav>
+                <!-- <a href="./current.html">City Weather</a> -->
+                <!-- <a href="https://eric-tseng.ciccc.tech/">Profolio</a> -->
+                <a href="#currentWeather">Current</a>
+                <a href="#forcastWeather">Forcast</a>
+            </nav>
+
+            <div class="searchBar">
+                <input type="text" name="city" id="city" placeholder="Vancouver">
+                <!-- <input type="submit" value="Search" onclick="searchCity()"> -->
+                <input type="image" src="/image/jing.fm-contact-me-clipart-1658581.png" alt="search" onclick="searchCity()">
+        
+            </div>
+            
+            
+        </div>
+        
+    </header>
+
+    <!-- search bar -->
+    
+    <hr>
+    <section id="currentWeather">
+        <h1>Current weather</h1>
+        <div class="cityWeather" id="mainCity"></div>
+    </section>
+    
+    <section id="forcastWeather">
+        <h1>Forcast <span id="offset"></span></h1>
+        <div class="forcastWeatherGroup"></div>  
+    </section>
+    
 
 
     <footer>
-        &copy;Eric Tseng 2021
+        <span>&copy;Eric Tseng 2021</span>
     </footer>
 </body>
 </html>

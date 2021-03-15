@@ -1,3 +1,4 @@
+// Variables
 let cityName = 'Vancouver';
 let coord = {lon: '-123.1193', lat: '49.2497'};
 const t = new Date();
@@ -9,17 +10,23 @@ const forcastDays = '7';
 const unit = 'metric';
 const apiKey = '1bfe440130f8c34a9a26a845a5c49429';
 
-
-
+// Run these functions initially
+getCoordinates(cityName);// Get the coordinates and fetch forcast weather
 fetchWeatherData(cityName);
 
+// Set cityName variables
+// Get coordinates for forcast function
+// Show current and forcast weather data
 function searchCity(){
     cityName = document.getElementById('city').value;
     cityName = cityName.charAt(0).toUpperCase()+cityName.slice(1);//uppercase the first letter of city's name
     getCoordinates(cityName);
-    fetchForcast(coord, cityName);
+    fetchWeatherData(cityName);
+    // fetchForcast(coord, cityName);
+
 }
 
+// Get coordinates info
 function getCoordinates(cityName){
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=${unit}&appid=${apiKey}`)
     .then(res => {
@@ -31,10 +38,13 @@ function getCoordinates(cityName){
             .then(data => {
                 coord.lon = data.coord.lon;
                 coord.lat = data.coord.lat;
+
+                fetchForcast(coord, cityName);
             })
     })
 }
 
+// Get "current" weather data
 function fetchWeatherData(cityName){
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=${unit}&appid=${apiKey}`)
     .then(res => {
@@ -50,7 +60,24 @@ function fetchWeatherData(cityName){
                 $(document).ready(()=>{
                     if(data.cod == 200){//Showing message if the city's name is wrong
                         $('#mainCity').empty()
-                        $('#mainCity').append(`<h3>${data.name}</h3><div><h4>${data.weather[0].main}</h4><h6>${data.weather[0].description}</h6></div><div><h5>Temperature: ${data.main.temp} \u00B0C</h5><h5>Humidity: ${data.main.humidity} %</h5><h5>Pressure: ${data.main.pressure} hPa</h5></div>`)
+                        $('#mainCity').append(`
+                            <h3>${data.name}</h3>
+                            <ul>
+                                <li>Temperature: ${data.main.temp} \u00B0C</li>
+                                <li>Humidity: ${data.main.humidity} %</li>
+                                <li>Feels like: ${data.main.feels_like} \u00B0C</li>
+                                <li>Temperature min: ${data.main.temp_min} \u00B0C</li>
+                                <li>Temperature max: ${data.main.temp_max} \u00B0C</li>
+                                <li>Pressure: ${data.main.pressure} hPa</li>
+
+                            </ul>
+                            <div>
+                                <h4>${data.weather[0].main}</h4>
+                                <h6>${data.weather[0].description}</h6>
+                            </div>
+                            
+                        `)
+                        $('li').animate({width:'100%', opacity:"1"}, 2000);
                     }else{
                         $('#mainCity').empty()
                         $('#mainCity').append(`<h3>${data.message}</h3>`)
@@ -61,6 +88,7 @@ function fetchWeatherData(cityName){
     })
 }
 
+// Get 7 days "forcast" weather data
 function fetchForcast(coordinates, cityName){
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&units=${unit}&appid=${apiKey}`)
     .then(res => {
@@ -86,7 +114,22 @@ function fetchForcast(coordinates, cityName){
                             newDate = newDate - 28;
                         }
 
-                        $('.forcastWeatherGroup').append(`<div class="forcastWeather"><h3>${month+1} / ${newDate}</h3><div><h4>${data.daily[i].weather[0].main}</h4><h6>${data.daily[i].weather[0].description}</h6></div><div><h5>Temperature: ${data.daily[i].temp.day} \u00B0C</h5><h5>Humidity: ${data.daily[i].humidity} %</h5><h5>Pressure: ${data.daily[i].pressure} hPa</h5></div></div>`);
+                        $('.forcastWeatherGroup').append(`
+                            <div class="forcastWeather">
+                                <h3>${month+1} / ${newDate}</h3>
+                                <div>
+                                    <h4>${data.daily[i].weather[0].main}</h4>
+                                    <h6>${data.daily[i].weather[0].description}</h6>
+                                </div>
+                                <div>
+                                    <ul>
+                                        <li>Temperature: ${data.daily[i].temp.day} \u00B0C</li>
+                                        <li>Humidity: ${data.daily[i].humidity} %</li>
+                                        <li>Pressure: ${data.daily[i].pressure} hPa</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        `);
                     }
                     
                 })
@@ -97,16 +140,20 @@ function fetchForcast(coordinates, cityName){
 
 
 
-
+// Update "current" weather data every 2 mins
 setInterval(()=>{
     // https://eric-tseng.ciccc.tech/Projects/Weather/forcast.html
     if(location.href != 'http://127.0.0.1:5500/dist/forcast.html'){
         fetchWeatherData(cityName);
         console.log("Weather update");
     }//only update data at interval in current and main pages
-}, 2000) 
+}, 120000) 
 
-//Fetch defult data once in forcast page
-if(location.href == 'http://127.0.0.1:5500/dist/forcast.html'){
-    fetchForcast(coord, cityName);
-}
+
+// Scrolling function test
+// $(document).scroll(()=>{
+
+//     let aa = $(document).scrollTop();
+//     console.log(aa);
+
+// })
