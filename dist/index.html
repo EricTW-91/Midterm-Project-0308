@@ -7,8 +7,8 @@
     <title>Weather Info</title>
     <link rel="stylesheet" href="./css/style.css">
     <!-- Jquery link should put before script.js file link -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./js/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+    <script src="./js/script.js" defer></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Fascinate&family=Quicksand:wght@300;700&display=swap" rel="stylesheet">
 
@@ -34,7 +34,7 @@
             <div class="searchBar">
                 <input type="text" name="city" id="city" placeholder="Vancouver">
                 <!-- <input type="submit" value="Search" onclick="searchCity()"> -->
-                <input type="image" src="/image/jing.fm-contact-me-clipart-1658581.png" alt="search" onclick="searchCity()">
+                <input type="image" id="searchBt" src="/image/jing.fm-contact-me-clipart-1658581.png" alt="search" onclick="searchCity()">
         
             </div>
             
@@ -43,7 +43,9 @@
         
     </header>
 
-    <!-- search bar -->
+    <button class="unitSwitch" onclick="unitSwitch()">&#8451;</button>
+
+
     
     <hr>
     <section id="currentWeather">

@@ -7,12 +7,46 @@ let date = t.getDate();
 const thirtyOneArr = [0, 2, 4, 6, 7, 9, 11];
 const thirtyArr = [3, 5, 8, 10];
 const forcastDays = '7';
-const unit = 'metric';
+let unit = 'metric';
+let unitShow = '\u00B0C';
 const apiKey = '1bfe440130f8c34a9a26a845a5c49429';
 
 // Run these functions initially
 getCoordinates(cityName);// Get the coordinates and fetch forcast weather
 fetchWeatherData(cityName);
+
+// To switch unit between C & F
+function unitSwitch(){
+    if(unit == 'metric'){
+        unit = 'imperial';
+        unitShow = '\u00B0F';
+        $('.unitSwitch').empty().append('&#8457;').css('background-color','#1DC690');
+    }else{
+        unit = 'metric';
+        unitShow = '\u00B0C';
+        $('.unitSwitch').empty().append('&#8451;').css('background-color','#278AB0');
+    }
+
+    getCoordinates(cityName);// Get the coordinates and fetch forcast weather
+    fetchWeatherData(cityName);
+}
+
+// Run searchCity() by pressing Enter key. 
+    
+    // document.getElementById('city').addEventListener("keypress", (event)=>{
+    //     if(event.keyCode == 13){
+    //         searchCity();
+    //     }
+    // })//(Not working???)
+
+    // Work with jquery
+$('#city').keypress((event)=>{
+    if(event.which == 13){
+        searchCity();
+    }
+})
+ 
+
 
 // Set cityName variables
 // Get coordinates for forcast function
@@ -55,11 +89,11 @@ function fetchWeatherData(cityName){
                         $('#mainCity').append(`
                             <h3>${data.name}</h3>
                             <ul>
-                                <li>Temperature: ${data.main.temp} \u00B0C</li>
+                                <li>Temperature: ${data.main.temp} ${unitShow}</li>
                                 <li>Humidity: ${data.main.humidity} %</li>
-                                <li>Feels like: ${data.main.feels_like} \u00B0C</li>
-                                <li>Temperature min: ${data.main.temp_min} \u00B0C</li>
-                                <li>Temperature max: ${data.main.temp_max} \u00B0C</li>
+                                <li>Feels like: ${data.main.feels_like} ${unitShow}</li>
+                                <li>Temperature min: ${data.main.temp_min} ${unitShow}</li>
+                                <li>Temperature max: ${data.main.temp_max} ${unitShow}</li>
                                 <li>Pressure: ${data.main.pressure} hPa</li>
                             </ul>
                             <div>
@@ -67,7 +101,7 @@ function fetchWeatherData(cityName){
                                 <h6>${data.weather[0].description}</h6>
                             </div>
                         `)
-                        $('li').animate({width:'100%', opacity:"1"}, 2000);
+                        $('li').animate({width:'100%', opacity:"1"}, 1000);
                     }else{
                         $('#mainCity').empty()
                         $('#mainCity').append(`<h3>${data.message}</h3>`)
@@ -100,7 +134,7 @@ function fetchForcast(coordinates, cityName){
                             newDate = newDate - 30;
                         }else if(month == 1 && date > 28){
                             newDate = newDate - 28;
-                        }
+                        }// Set further date in forcast
 
                         $('.forcastWeatherGroup').append(`
                             <div class="forcastWeather">
@@ -111,7 +145,7 @@ function fetchForcast(coordinates, cityName){
                                 </div>
                                 <div>
                                     <ul>
-                                        <li>Temperature: ${data.daily[i].temp.day} \u00B0C</li>
+                                        <li>Temperature: ${data.daily[i].temp.day} ${unitShow}</li>
                                         <li>Humidity: ${data.daily[i].humidity} %</li>
                                         <li>Pressure: ${data.daily[i].pressure} hPa</li>
                                     </ul>

@@ -43,17 +43,27 @@ header{
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            input{
+            #city, #searchBt{
                 margin: 0 20px;
                 height: 100%;
                 outline: none;
             }
-            button{
-                height: 100%;
-                img{
-                    height: 100%;
-                }
+            #city{
+                width: 200px;
+                height: 30px;
             }
+            #searchBt{
+                width: 30px;
+                height: 30px;
+            }
+            // button{
+            //     height: 100%;
+            //     width: 30px;
+            //     img{
+            //         height: 100%;
+            //         width: 30px;
+            //     }
+            // }
         
         }
 
@@ -67,7 +77,18 @@ header{
     
 }
 
-
+.unitSwitch{
+    position: fixed;
+    bottom: 3vh;
+    right: 30px;
+    height: 50px;
+    width: 80px;
+    font-size: 1.5em;
+    background-color: #278AB0;
+    color: white;
+    border-radius: 10px;
+    outline: none;
+}
 
 //separate section's style
 section:nth-child(even){
@@ -98,7 +119,7 @@ h6, li{
     display: grid;
     grid-template-columns: 1fr 1.5fr;
     
-    align-items: center;
+    place-items: center;
 
     h3{
         font-size: 2em;

@@ -74,22 +74,37 @@ header div .searchBar {
           align-items: center;
 }
 
-header div .searchBar input {
+header div .searchBar #city, header div .searchBar #searchBt {
   margin: 0 20px;
   height: 100%;
   outline: none;
 }
 
-header div .searchBar button {
-  height: 100%;
+header div .searchBar #city {
+  width: 200px;
+  height: 30px;
 }
 
-header div .searchBar button img {
-  height: 100%;
+header div .searchBar #searchBt {
+  width: 30px;
+  height: 30px;
 }
 
 header div nav a {
   margin: 0 20px;
+}
+
+.unitSwitch {
+  position: fixed;
+  bottom: 3vh;
+  right: 30px;
+  height: 50px;
+  width: 80px;
+  font-size: 1.5em;
+  background-color: #278AB0;
+  color: white;
+  border-radius: 10px;
+  outline: none;
 }
 
 section:nth-child(even) {
@@ -119,9 +134,7 @@ h6, li {
   display: grid;
   -ms-grid-columns: 1fr 1.5fr;
       grid-template-columns: 1fr 1.5fr;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  place-items: center;
 }
 
 .cityWeather h3 {
